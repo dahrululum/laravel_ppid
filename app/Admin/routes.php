@@ -2,6 +2,7 @@
 
 use Illuminate\Routing\Router;
 use App\Admin\Controllers\PageController;
+use App\Admin\Controllers\NavbarController;
 use App\Admin\Controllers\CategoryController;
 
 Admin::routes();
@@ -16,5 +17,6 @@ Route::group([
     $router->get('/', 'HomeController@index')->name('home');
     $router->resource('categories', CategoryController::class);
     $router->resource('pages', PageController::class);
+    $router->resource('navbars', NavbarController::class);
 
 });
