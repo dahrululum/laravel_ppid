@@ -2,12 +2,13 @@
 
 namespace App\Admin\Controllers;
 
-use OpenAdmin\Admin\Controllers\AdminController;
+use \App\Models\Navbar;
 use OpenAdmin\Admin\Form;
 use OpenAdmin\Admin\Grid;
 use OpenAdmin\Admin\Show;
-use \App\Models\Navbar;
+use Illuminate\Support\Str;
 use OpenAdmin\Admin\Widgets\Table;
+use OpenAdmin\Admin\Controllers\AdminController;
 
 class NavbarController extends AdminController
 {
@@ -26,32 +27,28 @@ class NavbarController extends AdminController
     protected function grid()
     {
         $grid = new Grid(new Navbar());
-        $grid->model()->where('parent_id', '0');
-        $grid->column('id', __('Id'));
-        //dd($grid->column('parent_id') );
         
-            $grid->column('name', __('Name'))->expand(function ($model) {
+         
+        $grid->model()->orderBy('parent_id', 'asc');
+        $grid->column('id', __('Id'));
+        $grid->column('parent_id', __('Parent id'))->default('0');
+        $grid->column('name', __('Name'));
+            // $grid->column('name', __('Name'))->expand(function ($model) {
 
-                $subcol = $model->hasParent()->take(10)->get()->map(function ($subcol) {
-                    return $subcol->only(['id', 'name', 'created_at']);
-                });
+            //     $subcol = $model->hasParent()->take(10)->get()->map(function ($subcol) {
+            //         return $subcol->only(['id', 'name', 'created_at']);
+            //     });
 
-                //dd($subcol);
-                return new Table(['ID', 'name'], $subcol->toArray());
-            });    
+            //     //dd($subcol);
+            //     return new Table(['ID', 'name'], $subcol->toArray());
+            // });    
         
        
         $grid->column('uri', __('Uri'));
-       // $grid->column('hasParent', __('Parent id'));
+      
+      
         
-       // $grid->column('order', __('Order'));
-        
-       // $grid->column('icon', __('Icon'));
        
-        //$grid->column('permission', __('Permission'));
-        $grid->column('created_at', __('Created at'));
-        $grid->column('updated_at', __('Updated at'));
-
         return $grid;
     }
 
@@ -91,35 +88,20 @@ class NavbarController extends AdminController
         //$form->select('parent_id','Parent ID')->options([1 => 'foo', 2 => 'bar', 'val' => 'Option name']);
         
         $form->select('parent_id', __("Parent ID"))->options(Navbar::all()->pluck('name', 'id'))
-        ->default(0)->setWidth(3, 2);
+        ->defaultOnEmpty(0)->setWidth(6, 2);
         
         //$form->text('order', __('Order'));
-        $form->text('name', __('Name'))->setWidth(4, 2);
-        $form->text('slug', 'Slug')->attribute(['id' => 'slug'])->setWidth(4, 2);
-        $form->html('
-            <script>
-                function slugify(text) {
-                    return text
-                        .toString()
-                        .toLowerCase()
-                        .trim()
-                        .replace(/\\s+/g, "-")           // Replace spaces with -
-                        .replace(/[^\w\\-]+/g, "")       // Remove all non-word chars
-                        .replace(/\\-\\-+/g, "-");        // Replace multiple - with single -
-                }
-
-                document.addEventListener("DOMContentLoaded", function() {
-                    document.getElementById("name").addEventListener("input", function(e) {
-                        let name = e.target.value;
-                        document.getElementById("slug").value = slugify(name);
-                    });
-                });
-            </script>
-        ');
+        $form->text('name', __('Name'))->setWidth(5, 2);
+        $form->hidden('slug', 'Slug')->attribute(['id' => 'slug'])->setWidth(4, 2);
+         
         //$form->text('icon', __('Icon'));
         $form->text('uri', __('Uri'))->setWidth(2, 2);
         //$form->text('permission', __('Permission'));
+        $form->saving(function (Form $form) {
 
+            $form->slug = Str::slug($form->name);
+        
+        });
         return $form;
     }
 }

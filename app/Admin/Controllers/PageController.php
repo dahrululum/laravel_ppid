@@ -69,6 +69,26 @@ class PageController extends AdminController
 
         $form->text('title', __('Title'));
         $form->text('slug', __('Slug'));
+        $form->html('
+            <script>
+                function slugify(text) {
+                    return text
+                        .toString()
+                        .toLowerCase()
+                        .trim()
+                        .replace(/\\s+/g, "-")           // Replace spaces with -
+                        .replace(/[^\w\\-]+/g, "")       // Remove all non-word chars
+                        .replace(/\\-\\-+/g, "-");        // Replace multiple - with single -
+                }
+
+                document.addEventListener("DOMContentLoaded", function() {
+                    document.getElementById("title").addEventListener("input", function(e) {
+                        let title = e.target.value;
+                        document.getElementById("slug").value = slugify(title);
+                    });
+                });
+            </script>
+        ');
         //$form->image('image', __('Image'));
         $form->multipleImage('image', 'Foto/Images');
         $form->ckeditor('fulltext', __('Fulltext'));
