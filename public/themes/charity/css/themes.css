@@ -1,7 +1,4 @@
  
-
-
-
 @font-face {
     font-family: 'Metropolis';
     src: url('../fonts/Metropolis/Metropolis-Regular.woff2') format('woff2'),
@@ -45,6 +42,7 @@
   --white-color:                  #ffffff;
   --primary-color:                #0c3c8e;
   --secondary-color:              #5a6f80;
+  --third-color:                  #a9abaf;
   --section-bg-color:             #acb9c4;
   --informasi-bg-color:           #061940;
   --site-footer-bg-color:         #44525d;
@@ -290,7 +288,36 @@ strong {
   height: 25px;
   line-height: 30px;
 }
+/*---------------------------------------
+  INFO TEXT BOX               
+-----------------------------------------*/
+.info-text-box {
+  background: var(--white-color);
+  border-radius: var(--border-radius-medium);
+  margin-bottom: 20px;
+  padding: 30px;
+   
+}
 
+.info-text-box-image {
+  border-radius: var(--border-radius-medium);
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.info-text-box-icon {
+  background: var(--section-bg-color);
+  border-radius: var(--border-radius-large);
+  color: var(--secondary-color);
+  font-size: var(--h6-font-size);
+  text-align: center;
+  display: inline-block;
+  vertical-align: middle;
+  width: 25px;
+  height: 25px;
+  line-height: 30px;
+}
 
 /*---------------------------------------
   AVATAR IMAGE - TESTIMONIAL, AUTHOR               
@@ -632,6 +659,8 @@ strong {
   transition: all 0.5s ease;
   min-height: 256px;
   padding: 15px;
+  border-radius: var(--border-radius-medium);
+  box-shadow: 0 1rem 3rem rgba(0,0,0,.175);
 }
 
 .featured-block:hover {
@@ -669,6 +698,7 @@ strong {
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
+  background: var(--third-color);
 }
 
 .about-image {
@@ -1540,6 +1570,7 @@ blockquote::before {
     height: 250px;
     margin: 0;
   }
+   
 
   .custom-text-block {
     padding: 20px 0 0 0;
