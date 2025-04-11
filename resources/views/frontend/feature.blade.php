@@ -41,7 +41,7 @@
                     <a href="donate.html" class="d-block">
                         <img src="{{ asset('assets/images/kemenkeupedia-copy.png') }}" class="featured-block-image img-fluid" alt="">
 
-                        <p class="featured-block-text"><strong>Cari Informasi</strong>Publik</p>
+                        <p class="featured-block-text"><strong>Cari Informasi</strong> Publik</p>
                     </a>
                 </div>
             </div>

@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg bg-light shadow-lg">
+<nav id="navbar" class="navbar navbar-expand-lg bg-light shadow-lg">
     <div class="container">
         <a class="navbar-brand" href="index.html">
             <img src="{{ asset('assets/images//logobabel.png') }}" class="logo img-fluid" alt="Portal PPID"  >
