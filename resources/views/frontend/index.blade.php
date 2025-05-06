@@ -30,11 +30,11 @@
             @include('frontend.feature')  
             @include('frontend.informasi')
             @include('frontend.about')
-
+            @include('frontend.partners')
             @include('frontend.profile')
             
 
-            @include('frontend.partners')
+           
 
             @include('frontend.layanan')
 

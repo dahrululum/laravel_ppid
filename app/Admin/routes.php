@@ -19,5 +19,6 @@ Route::group([
     $router->resource('pages', PageController::class);
     $router->resource('navbars', NavbarController::class);
     $router->resource('sliders', SliderController::class);
+    $router->resource('partners', PartnerController::class);
 
 });
