@@ -31,12 +31,13 @@
             @include('frontend.informasi')
             @include('frontend.about')
             @include('frontend.partners')
-            @include('frontend.profile')
-            
+            @include('frontend.layanan')
+            {{-- @include('frontend.profile')
+             --}}
 
            
 
-            @include('frontend.layanan')
+           
 
             @include('frontend.news')
             

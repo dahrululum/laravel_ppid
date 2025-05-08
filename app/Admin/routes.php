@@ -20,5 +20,6 @@ Route::group([
     $router->resource('navbars', NavbarController::class);
     $router->resource('sliders', SliderController::class);
     $router->resource('partners', PartnerController::class);
+    $router->resource('layanans', LayananController::class);
 
 });
