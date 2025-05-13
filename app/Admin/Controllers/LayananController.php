@@ -71,6 +71,7 @@ class LayananController extends AdminController
         $form = new Form(new Layanan());
         
         $form->text('title', __('Title'))->setWidth(6, 2);
+        $form->hidden('slug');
         $form->image('foto', __('Foto/Image'))->move('layanan/')->uniqueName()->help('ukuran file max: 2MB, format: jpg, png, jpeg : dimension : 800x800')->setWidth(6, 2);
         //$form->text('slug', __('Slug'));
         $form->ckeditor('description', __('Description'))->setWidth(8, 2);
@@ -80,7 +81,7 @@ class LayananController extends AdminController
         $form->select('status', __('Status'))->options([1 => 'Active', 2 => 'Not Actice'])->default('1')->setWidth(3, 2);
         $form->saving(function (Form $form) {
 
-            $form->alias = Str::slug($form->nama);
+            $form->slug = Str::slug($form->nama);
         
         });
 

@@ -1,26 +1,33 @@
+@php
+setlocale(LC_TIME, 'id_ID');
+\Carbon\Carbon::setLocale('id');
+@endphp
 <section class="news-section section-padding" id="section_5">
     <div class="container">
         <div class="row">
 
             <div class="col-lg-12 col-12 mb-5">
-                <h2>Latest News</h2>
+                <h2>Berita Terkini</h2>
             </div>
-
+           
             <div class="col-lg-7 col-12">
                 <div class="news-block">
                     <div class="news-block-top">
-                        <a href="news-detail.html">
-                            <img src="images/news/medium-shot-volunteers-with-clothing-donations.jpg" class="news-image img-fluid" alt="">
+                        <a href="{{ 'newsdetail/'.$hlnews->slug }}">
+                            <img src="{{ asset('uploads/'.$hlnews->foto) }}" class="news-image img-fluid" alt="">
                         </a>
 
                         <div class="news-category-block">
-                            <a href="#" class="category-block-link">
-                                Lifestyle,
-                            </a>
+                               
+                                @php
+                                   
+                                    $tags = explode(',', $hlnews->tags);
+                                    foreach ($tags as $tag) {
+                                        echo '<a href="#" class="category-block-link">' . $tag . ',</a>';
+                                    }
 
-                            <a href="#" class="category-block-link">
-                                Clothing Donation
-                            </a>
+                                @endphp
+                             
                         </div>
                     </div>
 
@@ -29,89 +36,34 @@
                             <div class="news-block-date">
                                 <p>
                                     <i class="bi-calendar4 custom-icon me-1"></i>
-                                    October 12, 2036
+                                   
+                                    {{ 
+                                    
+                                    \Carbon\Carbon::parse($hlnews->publish_date)->isoFormat('dddd, D MMMM Y'); }}
                                 </p>
                             </div>
 
                             <div class="news-block-author mx-5">
                                 <p>
                                     <i class="bi-person custom-icon me-1"></i>
-                                    By Admin
+                                   {{ $hlnews->publish_by }}
                                 </p>
                             </div>
 
-                            <div class="news-block-comment">
-                                <p>
-                                    <i class="bi-chat-left custom-icon me-1"></i>
-                                    32 Comments
-                                </p>
-                            </div>
+                             
                         </div>
 
                         <div class="news-block-title mb-2">
-                            <h4><a href="news-detail.html" class="news-block-title-link">Clothing donation to urban area</a></h4>
+                            <h4><a href="{{ 'newsdetail/'.$hlnews->slug }}" class="news-block-title-link">{{ $hlnews->title }}</a></h4>
                         </div>
 
                         <div class="news-block-body">
-                            <p>Lorem Ipsum dolor sit amet, consectetur adipsicing kengan omeg kohm tokito Professional charity theme based on Bootstrap</p>
+                            <p>{!! $hlnews->introtext !!}</p>
                         </div>
                     </div>
                 </div>
 
-                <div class="news-block mt-3">
-                    <div class="news-block-top">
-                        <a href="news-detail.html">
-                            <img src="images/news/medium-shot-people-collecting-foodstuff.jpg" class="news-image img-fluid" alt="">
-                        </a>
-
-                        <div class="news-category-block">
-                            <a href="#" class="category-block-link">
-                                Food,
-                            </a>
-
-                            <a href="#" class="category-block-link">
-                                Donation,
-                            </a>
-
-                            <a href="#" class="category-block-link">
-                                Caring
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="news-block-info">
-                        <div class="d-flex mt-2">
-                            <div class="news-block-date">
-                                <p>
-                                    <i class="bi-calendar4 custom-icon me-1"></i>
-                                    October 20, 2036
-                                </p>
-                            </div>
-
-                            <div class="news-block-author mx-5">
-                                <p>
-                                    <i class="bi-person custom-icon me-1"></i>
-                                    By Admin
-                                </p>
-                            </div>
-
-                            <div class="news-block-comment">
-                                <p>
-                                    <i class="bi-chat-left custom-icon me-1"></i>
-                                    35 Comments
-                                </p>
-                            </div>
-                        </div>
-
-                        <div class="news-block-title mb-2">
-                            <h4><a href="news-detail.html" class="news-block-title-link">Food donation area</a></h4>
-                        </div>
-
-                        <div class="news-block-body">
-                            <p>Sed leo nisl, posuere at molestie ac, suscipit auctor mauris. Etiam quis metus elementum, tempor risus vel, condimentum orci</p>
-                        </div>
-                    </div>
-                </div>
+                 
             </div>
 
             <div class="col-lg-4 col-12 mx-auto">
@@ -123,120 +75,47 @@
                     </button>
                 </form>
 
-                <h5 class="mt-5 mb-3">Recent news</h5>
-
-                <div class="news-block news-block-two-col d-flex mt-4">
+                <h5 class="mt-2 mb-3">Berita Lainnya</h5>
+                @foreach ($othernews as $item)
+                <div class="news-block news-block-two-col d-flex mb-2 mt-1">
                     <div class="news-block-two-col-image-wrap">
-                        <a href="news-detail.html">
-                            <img src="images/news/africa-humanitarian-aid-doctor.jpg" class="news-image img-fluid" alt="">
+                        <a href="{{ 'newsdetail/'.$item->slug }}">
+                            <img src="{{ asset('uploads/'.$item->foto) }}" class="news-image img-fluid" alt="">
                         </a>
                     </div>
 
                     <div class="news-block-two-col-info">
                         <div class="news-block-title mb-2">
-                            <h6><a href="news-detail.html" class="news-block-title-link">Food donation area</a></h6>
+                            <h6><a href="{{ 'newsdetail/'.$item->slug }}" class="news-block-title-link">{{ $item->title }}</a></h6>
                         </div>
 
                         <div class="news-block-date">
                             <p>
                                 <i class="bi-calendar4 custom-icon me-1"></i>
-                                October 16, 2036
+                                {{ 
+                                    
+                                    \Carbon\Carbon::parse($item->publish_date)->isoFormat('dddd, D MMMM Y'); }}
                             </p>
                         </div>
                     </div>
                 </div>
+                @endforeach
+                 
 
-                <div class="news-block news-block-two-col d-flex mt-4">
-                    <div class="news-block-two-col-image-wrap">
-                        <a href="news-detail.html">
-                            <img src="images/news/close-up-happy-people-working-together.jpg" class="news-image img-fluid" alt="">
-                        </a>
-                    </div>
-
-                    <div class="news-block-two-col-info">
-                        <div class="news-block-title mb-2">
-                            <h6><a href="news-detail.html" class="news-block-title-link">Volunteering Clean</a></h6>
-                        </div>
-
-                        <div class="news-block-date">
-                            <p>
-                                <i class="bi-calendar4 custom-icon me-1"></i>
-                                October 24, 2036
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="category-block d-flex flex-column">
-                    <h5 class="mb-3">Categories</h5>
-
-                    <a href="#" class="category-block-link">
-                        Drinking water
-                        <span class="badge">20</span>
-                    </a>
-
-                    <a href="#" class="category-block-link">
-                        Food Donation
-                        <span class="badge">30</span>
-                    </a>
-
-                    <a href="#" class="category-block-link">
-                        Children Education
-                        <span class="badge">10</span>
-                    </a>
-
-                    <a href="#" class="category-block-link">
-                        Poverty Development
-                        <span class="badge">15</span>
-                    </a>
-
-                    <a href="#" class="category-block-link">
-                        Clothing Donation
-                        <span class="badge">20</span>
-                    </a>
-                </div>
+                 
 
                 <div class="tags-block">
                     <h5 class="mb-3">Tags</h5>
-
-                    <a href="#" class="tags-block-link">
-                        Donation
-                    </a>
-
-                    <a href="#" class="tags-block-link">
-                        Clothing
-                    </a>
-
-                    <a href="#" class="tags-block-link">
-                        Food
-                    </a>
-
-                    <a href="#" class="tags-block-link">
-                        Children
-                    </a>
-
-                    <a href="#" class="tags-block-link">
-                        Education
-                    </a>
-
-                    <a href="#" class="tags-block-link">
-                        Poverty
-                    </a>
-
-                    <a href="#" class="tags-block-link">
-                        Clean Water
-                    </a>
+                    @foreach($tags_all as $tags)
+                    <a href="{{ 'tags/'.$tags }}" class="tags-block-link">
+                        {{ $tags }}
+                    </a>  
+                    @endforeach
+                   
+ 
                 </div>
 
-                <form class="custom-form subscribe-form" action="#" method="get" role="form">
-                    <h5 class="mb-4">Newsletter Form</h5>
-
-                    <input type="email" name="subscribe-email" id="subscribe-email" pattern="[^ @]*@[^ @]*" class="form-control" placeholder="Email Address" required>
-
-                    <div class="col-lg-12 col-12">
-                        <button type="submit" class="form-control">Subscribe</button>
-                    </div>
-                </form>
+                 
             </div>
 
         </div>

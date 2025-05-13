@@ -21,5 +21,6 @@ Route::group([
     $router->resource('sliders', SliderController::class);
     $router->resource('partners', PartnerController::class);
     $router->resource('layanans', LayananController::class);
+    $router->resource('news', NewsController::class);
 
 });

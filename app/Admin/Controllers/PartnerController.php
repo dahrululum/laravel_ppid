@@ -71,6 +71,7 @@ class PartnerController extends AdminController
         $form = new Form(new Partner());
         $form->setWidth(10, 1);
         $form->text('nama', __('Nama'))->setWidth(6, 1);
+        $form->hidden('alias');
         $form->divider();
         //$form->text('alias', __('Alias'));
         $form->image('logo', __('Logo'))->move('partner/')->uniqueName()->help('ukuran file max: 2MB, format: jpg, png, jpeg : dimension : 800x800')->setWidth(6, 1);
