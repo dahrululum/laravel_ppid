@@ -66,7 +66,7 @@
         <script src="{{ asset('themes/charity/js/counter.js') }}"></script>
         <script src="{{ asset('themes/charity/js/custom.js') }}"></script>
        
-        {{-- <script>
+        <script>
             $('body').openAccessibility({
                 textSelector: 'h1,h2,h3,h4,h5,p,span',
                 highlightedLinks: true,
@@ -74,6 +74,6 @@
                 iconSize: 's',
                 localization: ['en']
             });
-        </script> --}}
+        </script>
     </body>
 </html>

@@ -54,7 +54,7 @@ setlocale(LC_TIME, 'id_ID');
                         </div>
 
                         <div class="news-block-title mb-2">
-                            <h4><a href="{{ 'newsdetail/'.$hlnews->slug }}" class="news-block-title-link">{{ $hlnews->title }}</a></h4>
+                            <h4><a href="{{ 'detail-news/'.$hlnews->slug }}" class="news-block-title-link">{{ $hlnews->title }}</a></h4>
                         </div>
 
                         <div class="news-block-body">
@@ -79,14 +79,14 @@ setlocale(LC_TIME, 'id_ID');
                 @foreach ($othernews as $item)
                 <div class="news-block news-block-two-col d-flex mb-2 mt-1">
                     <div class="news-block-two-col-image-wrap">
-                        <a href="{{ 'newsdetail/'.$item->slug }}">
+                        <a href="{{ 'detail-news/'.$item->slug }}">
                             <img src="{{ asset('uploads/'.$item->foto) }}" class="news-image img-fluid" alt="">
                         </a>
                     </div>
 
                     <div class="news-block-two-col-info">
                         <div class="news-block-title mb-2">
-                            <h6><a href="{{ 'newsdetail/'.$item->slug }}" class="news-block-title-link">{{ $item->title }}</a></h6>
+                            <h6><a href="{{ 'detail-news/'.$item->slug }}" class="news-block-title-link">{{ $item->title }}</a></h6>
                         </div>
 
                         <div class="news-block-date">

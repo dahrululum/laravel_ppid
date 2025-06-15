@@ -42,19 +42,19 @@
 
                               <ol class="carousel-indicators">
                                    <li data-bs-target="#testimonial-carousel" data-bs-slide-to="0" class="active">
-                                        <img src="images/avatar/portrait-beautiful-young-woman-standing-grey-wall.jpg" class="img-fluid rounded-circle avatar-image" alt="avatar">
+                                        <img src="{{ asset('themes/charity/images/avatar/portrait-beautiful-young-woman-standing-grey-wall.jpg') }}" class="img-fluid rounded-circle avatar-image" alt="avatar">
                                    </li>
 
                                    <li data-bs-target="#testimonial-carousel" data-bs-slide-to="1" class="">
-                                        <img src="images/avatar/portrait-young-redhead-bearded-male.jpg" class="img-fluid rounded-circle avatar-image" alt="avatar">
+                                        <img src="{{ asset('themes/charity/images/avatar/portrait-young-redhead-bearded-male.jpg') }}" class="img-fluid rounded-circle avatar-image" alt="avatar">
                                    </li>
 
                                    <li data-bs-target="#testimonial-carousel" data-bs-slide-to="2" class="">
-                                        <img src="images/avatar/pretty-blonde-woman-wearing-white-t-shirt.jpg" class="img-fluid rounded-circle avatar-image" alt="avatar">
+                                        <img src="{{ asset('themes/charity/images/avatar/pretty-blonde-woman-wearing-white-t-shirt.jpg') }}" class="img-fluid rounded-circle avatar-image" alt="avatar">
                                    </li>
 
                                    <li data-bs-target="#testimonial-carousel" data-bs-slide-to="3" class="">
-                                        <img src="images/avatar/studio-portrait-emotional-happy-funny.jpg" class="img-fluid rounded-circle avatar-image" alt="avatar">
+                                        <img src="{{ asset('themes/charity/images/avatar/studio-portrait-emotional-happy-funny.jpg') }}" class="img-fluid rounded-circle avatar-image" alt="avatar">
                                    </li>
                               </ol>
 
