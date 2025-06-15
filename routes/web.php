@@ -7,3 +7,4 @@ use App\Http\Controllers\SiteController;
 //     return view('welcome');
 // });
 Route::get('/', [SiteController::class,'index']);
+Route::get('/detail-news/{id}', [SiteController::class,'detailnews']);

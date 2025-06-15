@@ -36,4 +36,24 @@ class SiteController extends Controller
             'tags_all' => $tags_all
         ]);
     }
+    public function detailnews($slug){
+        $news = News::where('slug', $slug)->first();
+        $othernews = News::where('publish_status', 1)
+                    ->where('id', '!=', $news->id)
+                    ->orderby('publish_date', 'desc')
+                    ->limit(4)
+                    ->get();
+        $allnews= News::get();
+        $tags_all = $allnews->map(fn($allnews) => explode(',', $news->tags))
+                    ->flatten()
+                    ->unique()   // avoid repeating tags
+                    ->sort()     // optional
+                    ->values();    
+
+        return view('frontend.detailnews',[
+            'news' => $news,
+            'othernews' => $othernews,
+            'tags_all' => $tags_all
+        ]);
+    }
 }
