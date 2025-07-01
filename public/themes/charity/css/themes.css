@@ -436,7 +436,7 @@ strong {
   background: transparent;
   color: var(--primary-color);
 }
-
+/* 
 .dropdown-menu {
   background: var(--white-color);
   box-shadow: 0 1rem 3rem rgba(0,0,0,.175);
@@ -484,13 +484,13 @@ strong {
   position: relative;
   left: 2px;
   border: 0;
-}
+} */
 
 @media screen and (min-width: 992px) {
-  .dropdown:hover .dropdown-menu {
+  /* .dropdown:hover .dropdown-menu {
     display: block;
     margin-top: 0;
-  }
+  } */
 }
 
 .navbar-toggler {
@@ -798,7 +798,7 @@ strong {
   DONATE              
 -----------------------------------------*/
 .donate-section {
-  background-image: url('../images/different-people-doing-volunteer-work.jpg');
+  background-image: url('../../../assets/images/bg.jpg');
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -1486,14 +1486,14 @@ blockquote::before {
   .navbar-expand-lg .navbar-nav .nav-link {
     padding: 8px 20px;
   }
-  
+/*   
   .dropdown:hover .dropdown-menu {
     display: block;
     position: relative;
     margin-top: 5px;
     margin-bottom: 20px;
     left: 20px;
-  }
+  } */
 
   .site-header .social-icon {
     text-align: left;

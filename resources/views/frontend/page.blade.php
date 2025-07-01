@@ -8,9 +8,8 @@
         <meta name="author" content="">
 
         <title>Portal PPID - Babelprov</title>
-        <meta property="og:locale" content="en_US" />
         <meta property="og:type" content="website" />
-        <meta property="og:title" content="Home - Portal PPID" />
+        <meta property="og:title" content="Detail Page - {{ $page->title }}" />
         <meta property="og:description" content="Form Permohonan Informasi Publik Form Pengajuan Keberatan Informasi Publik Informasi Berkala Informasi Serta Merta Informasi Setiap Saat Cari Informasi Publik Berkala 0 [&hellip;]" />
         <meta property="og:url" content="https://portalppid.babelprov.go.id/" />
         <meta property="og:site_name" content="Portal PPID" />
@@ -20,82 +19,107 @@
         <link href="{{ asset('themes/charity/css/bootstrap.min.css') }}" rel="stylesheet">
         <link href="{{ asset('themes/charity/css/bootstrap-icons.css') }}" rel="stylesheet">
         <link href="{{ asset('themes/charity/css/themes.css') }}" rel="stylesheet">
+        {{-- <link rel="stylesheet" href="https://cdn.rawgit.com/jossef/open-accessibility/master/dist/open-accessibility.min.css"> --}}
+        <link rel="stylesheet" href="{{ asset('assets/css/open-accessibility.min.css') }}">
         <link rel="shortcut icon" href="{{ asset('assets/images/iconbabel.png') }}" >
 		<link rel="icon" href="{{ asset('assets/images/logobabel.png') }}" >
 		<link rel="apple-touch-icon" sizes="152x152" href="{{ asset('assets/images/logobabel.png') }}">
 		<link rel="apple-touch-icon" sizes="120x120" href="{{ asset('assets/images/logobabel.png') }}">
 		<link rel="apple-touch-icon" sizes="76x76" href="{{ asset('assets/images/logobabel.png') }}">
         <link rel="apple-touch-icon" href="{{ asset('assets/images/logobabel.png') }}">
-
         <style>
-    /* Custom styles for multi-level dropdown */
-    .dropdown-menu .dropdown-submenu {
-      position: relative;
-    }
+            /* Custom styles for multi-level dropdown */
+            .dropdown-menu .dropdown-submenu {
+            position: relative;
+            }
 
-    .dropdown-menu .dropdown-submenu .dropdown-menu {
-      top: 0;
-      left: 100%;
-      margin-top: -1px;
-    }
+            .dropdown-menu .dropdown-submenu .dropdown-menu {
+            top: 0;
+            left: 100%;
+            margin-top: -1px;
+            }
 
-    /* Show submenu on hover for desktop */
-    @media (min-width: 992px) {
-      .dropdown-menu .dropdown-submenu:hover > .dropdown-menu {
-        display: block;
-      }
-    }
+            /* Show submenu on hover for desktop */
+            @media (min-width: 992px) {
+            .dropdown-menu .dropdown-submenu:hover > .dropdown-menu {
+                display: block;
+            }
+            }
 
-    /* Adjustments for smaller screens (optional) */
-    @media (max-width: 991.98px) {
-      .dropdown-menu .dropdown-submenu .dropdown-menu {
-        position: static;
-        float: none;
-        width: auto;
-        margin-top: 0;
-        border: none;
-        box-shadow: none;
-      }
-    }
-  </style>
-        {{-- <link rel="stylesheet" href="https://cdn.rawgit.com/jossef/open-accessibility/master/dist/open-accessibility.min.css"> --}}
-        <link rel="stylesheet" href="{{ asset('assets/css/open-accessibility.min.css') }}">
-        <script src="https://code.responsivevoice.org/responsivevoice.js?key=o3DSWFlZ"></script>
+            /* Adjustments for smaller screens (optional) */
+            @media (max-width: 991.98px) {
+            .dropdown-menu .dropdown-submenu .dropdown-menu {
+                position: static;
+                float: none;
+                width: auto;
+                margin-top: 0;
+                border: none;
+                box-shadow: none;
+            }
+            }
+        </style>
     </head>
     
-    <body id="section_1">
+    <body>
+ 
 
-        
         @include('frontend.header')
         @include('frontend.nav')
 
         <main>
 
-            @include('frontend.slider')  
-            @include('frontend.feature')  
-            @include('frontend.informasi')
-            @include('frontend.about')
-            @include('frontend.partners')
-            @include('frontend.layanan')
-            {{-- @include('frontend.profile')
-             --}}
+            <section class="donate-section text-center">
+                <div class="section-overlay"></div>
 
-           
+                <div class="container">
+                    <div class="row">
 
-           
+                        <div class="col-lg-12 col-12">
+                            <h1 class="text-white">{{ $page->title }}</h1>
+                        </div>
 
-            @include('frontend.news')
-            
+                    </div>
+                </div>
+            </section>
 
-            @include('frontend.testimoni')
+            <section class="news-section section-padding">
+                <div class="container">
+                    <div class="row">
 
-            @include('frontend.contact')
+                        <div class="col-lg-12 col-12">
+                            <div class="news-block">
+                                @if(!empty($page->image))
+                                <div class="news-block-top">
+                                    <img src="{{ asset('uploads/'.$page->image) }}" class="news-image img-fluid" alt="">
+ 
+                                </div>
+                                @endif
+                                
+                                <div class="news-block-title mb-2">
+                                    <h4>{{ $page->title }}</h4>
+                                </div>
 
+                                    <div class="news-block-body">
+                                        {!! $page->fulltext !!}
+                                    </div>
 
-            
+                                      
 
+                                 
+                                       
 
-            
+                                    
+                                </div>
+                            </div>
+                        </div>
+
+                        
+
+                    </div>
+                </div>
+            </section>
+
+             
         </main>
 
         @yield('footer')
@@ -105,10 +129,10 @@
         <script src="https://cdn.rawgit.com/jossef/open-accessibility/master/dist/open-accessibility.min.js"></script>
 
 
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
         <script src="{{ asset('themes/charity/js/jquery.sticky.js') }}"></script>
-        <script src="{{ asset('themes/charity/js/click-scroll.js') }}"></script>
+        
         <script src="{{ asset('themes/charity/js/counter.js') }}"></script>
         <script src="{{ asset('themes/charity/js/custom.js') }}"></script>
        
@@ -120,7 +144,7 @@
                 iconSize: 's',
                 localization: ['en']
             });
-              document.addEventListener("DOMContentLoaded", function(){
+            document.addEventListener("DOMContentLoaded", function(){
                 document.querySelectorAll('.dropdown-menu .dropdown-submenu a').forEach(function(element){
                 element.addEventListener('click', function (e) {
                     let nextEl = this.nextElementSibling;
@@ -135,7 +159,9 @@
                 });
                 })
             });
-            
         </script>
+
+        
+
     </body>
 </html>

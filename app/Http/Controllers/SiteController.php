@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\News;
+use App\Models\Page;
 use App\Models\Slider;
 use App\Models\Layanan;
 use App\Models\Partner;
@@ -12,6 +13,7 @@ class SiteController extends Controller
 {
     public function index()
     {
+        $pages = Page::all();
         $sliders = Slider::where('status', 1)->get();
         $partners = Partner::where('status', 1)->get();
         $layanans = Layanan::where('status', 1)->get();
@@ -27,7 +29,7 @@ class SiteController extends Controller
         ->values();             
                             
         return view('frontend.home',[
-            
+            'pages'  => $pages,
             'sliders'  => $sliders,
             'partners' => $partners,
             'layanans' => $layanans,
@@ -54,6 +56,15 @@ class SiteController extends Controller
             'news' => $news,
             'othernews' => $othernews,
             'tags_all' => $tags_all
+        ]);
+    }
+    public function detailpage($slug){
+        $page = Page::where('slug', $slug)->first();
+        
+
+        return view('frontend.detailpage',[
+            'page' => $page,
+           
         ]);
     }
 }

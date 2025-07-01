@@ -2,11 +2,12 @@
 
 namespace App\Admin\Controllers;
 
-use OpenAdmin\Admin\Controllers\AdminController;
+use \App\Models\Page;
 use OpenAdmin\Admin\Form;
 use OpenAdmin\Admin\Grid;
 use OpenAdmin\Admin\Show;
-use \App\Models\Page;
+use Illuminate\Support\Str;
+use OpenAdmin\Admin\Controllers\AdminController;
 
 class PageController extends AdminController
 {
@@ -29,8 +30,7 @@ class PageController extends AdminController
         $grid->column('id', __('Id'));
         $grid->column('title', __('Title'));
         $grid->column('slug', __('Slug'));
-        
-        $grid->column('image', __('Image'))->image();
+         
         $grid->column('created_at', __('Created at'));
         
 
@@ -68,31 +68,18 @@ class PageController extends AdminController
         $form = new Form(new Page());
 
         $form->text('title', __('Title'));
-        $form->text('slug', __('Slug'));
-        $form->html('
-            <script>
-                function slugify(text) {
-                    return text
-                        .toString()
-                        .toLowerCase()
-                        .trim()
-                        .replace(/\\s+/g, "-")           // Replace spaces with -
-                        .replace(/[^\w\\-]+/g, "")       // Remove all non-word chars
-                        .replace(/\\-\\-+/g, "-");        // Replace multiple - with single -
-                }
-
-                document.addEventListener("DOMContentLoaded", function() {
-                    document.getElementById("title").addEventListener("input", function(e) {
-                        let title = e.target.value;
-                        document.getElementById("slug").value = slugify(title);
-                    });
-                });
-            </script>
-        ');
-        //$form->image('image', __('Image'));
-        $form->multipleImage('image', 'Foto/Images');
+        $form->hidden('slug');
+        
+        $form->image('image', __('Foto/Image'))->move('pages/')->uniqueName()->help('ukuran file max: 2MB, format: jpg, png, jpeg')->setWidth(6, 2);
+        //$form->multipleImage('image', 'Foto/Images');
         $form->ckeditor('fulltext', __('Fulltext'));
-       
+        $form->saving(function (Form $form) {
+            //$uniqid = hexdec(uniqid());
+            $uniqid = date('Ymdhis');
+            $form->slug = $uniqid . '-' . Str::slug($form->title);
+           // $form->slug = Str::slug($form->title);
+        
+        });
 
         return $form;
     }

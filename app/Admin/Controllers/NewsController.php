@@ -38,8 +38,7 @@ class NewsController extends AdminController
         $grid->column('publish_date', __('Publish date'));
         $grid->column('publish_status', __('Publish status'));
         $grid->column('publish_by', __('Publish by'));
-        // $grid->column('created_at', __('Created at'));
-        // $grid->column('updated_at', __('Updated at'));
+ 
 
         return $grid;
     }
