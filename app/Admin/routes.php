@@ -22,5 +22,7 @@ Route::group([
     $router->resource('partners', PartnerController::class);
     $router->resource('layanans', LayananController::class);
     $router->resource('news', NewsController::class);
+    $router->resource('videos', VideoController::class);
+    $router->resource('photos', PhotoController::class);
 
 });

@@ -86,7 +86,7 @@ setlocale(LC_TIME, 'id_ID');
 
                     <div class="news-block-two-col-info">
                         <div class="news-block-title mb-2">
-                            <h6><a href="{{ 'detail-news/'.$item->slug }}" class="news-block-title-link">{{ $item->title }}</a></h6>
+                            <h6><a href="{{ url('detail-news/'.$item->slug) }}" class="news-block-title-link">{{ $item->title }}</a></h6>
                         </div>
 
                         <div class="news-block-date">

@@ -47,16 +47,20 @@
                         <div class="col-lg-7 col-12">
                             <div class="news-block">
                                 <div class="news-block-top">
-                                    <img src="{{ asset('themes/charity/images/news/medium-shot-volunteers-with-clothing-donations.jpg') }}" class="news-image img-fluid" alt="">
+                                    <img src="{{ asset('uploads/'.$news->foto) }}" class="news-image img-fluid" alt="">
 
                                     <div class="news-category-block">
-                                        <a href="#" class="category-block-link">
-                                            Lifestyle,
-                                        </a>
+                                        @php
+                                            $tagsna=explode(',',$news->tags);
 
-                                        <a href="#" class="category-block-link">
-                                            Clothing Donation
-                                        </a>
+                                        @endphp
+                                         @foreach($tagsna as $tags)
+                                        <a href="{{ 'tags/'.$tags }}" class="tags-block-link text-white">
+                                            {{ $tags }}
+                                        </a>  
+                                        @endforeach
+                                        
+                                       
                                     </div>
                                 </div>
 
@@ -125,14 +129,14 @@
                             @foreach ($othernews as $item )
                                 <div class="news-block news-block-two-col d-flex mt-4">
                                     <div class="news-block-two-col-image-wrap">
-                                        <a href="news-detail.html">
+                                        <a href="{{ url('detail-news/'.$item->slug) }}">
                                             <img src="{{ asset('uploads/'.$item->foto) }}" class="news-image img-fluid" alt="">
                                         </a>
                                     </div>
 
                                     <div class="news-block-two-col-info">
                                         <div class="news-block-title mb-2">
-                                            <h6><a href="news-detail.html" class="news-block-title-link">{{ $item->title }}</a></h6>
+                                            <h6><a href="{{ url('detail-news/'.$item->slug) }}" class="news-block-title-link">{{ $item->title }}</a></h6>
                                         </div>
 
                                         <div class="news-block-date">
@@ -161,15 +165,7 @@
                                 
                             </div>
 
-                            <form class="custom-form subscribe-form" action="#" method="post" role="form">
-                                <h5 class="mb-4">Newsletter Form</h5>
-
-                                <input type="email" name="subscribe-email" id="subscribe-email" pattern="[^ @]*@[^ @]*" class="form-control" placeholder="Email Address" required>
-
-                                <div class="col-lg-12 col-12">
-                                    <button type="submit" class="form-control">Subscribe</button>
-                                </div>
-                            </form>
+                            
                         </div>
 
                     </div>
